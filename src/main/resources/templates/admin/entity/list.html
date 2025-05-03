@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template :: head"></head>
+<body>
+<div class="wrapper">
+    <div th:replace="fragments/template :: sidebar"></div>
+
+    <div class="main-panel">
+        <div class="page-inner">
+            <div class="row">
+                <div class="offset-2 col-8">
+                    <table class="table table-bordered table-head-bg-success mt-3">
+                        <thead>
+                        <tr>
+                            <th class="text-center" scope="col">col 1</th>
+                            <th class="text-center" scope="col">col 2</th>
+                            <th class="text-center" scope="col">col 3 </th>
+                            <th class="text-center" scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Val</td>
+                            <td>Val</td>
+                            <td>Val</td>
+                            <td>Modif et Sup</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- Chart JS -->
+            <div th:replace="fragments/template :: footer"></div>
+            <!--   Core JS Files   -->
+            <script src="/assets/js/core/jquery-3.7.1.min.js"></script>
+            <script src="/assets/js/core/popper.min.js"></script>
+            <script src="/assets/js/core/bootstrap.min.js"></script>
+            <!-- jQuery Scrollbar -->
+            <script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+            <!-- Bootstrap Notify -->
+            <script src="/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+            <!-- Sweet Alert -->
+            <script src="/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+            <!-- Kaiadmin JS -->
+            <script src="/assets/js/kaiadmin.min.js"></script>
+        </div>
+    </div>
+</body>
+</html>

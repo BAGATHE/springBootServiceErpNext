@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+
+    <!-- Lien vers Bootstrap 5.3 -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <style>
+        /* Enlève les marges par défaut pour coller le header en haut */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #f8f9fa;
+        }
+
+        /* Header collé en haut */
+        .banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0d6efd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajout d'une légère ombre pour un effet de profondeur */
+            z-index: 1000; /* Assure que le header reste au-dessus du contenu */
+        }
+
+        /* Centrage des boutons en dessous de la bannière */
+        .content {
+            background-image: url("/assets/img/coworking2.jpg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 100px; /* Compense la hauteur de la bannière pour éviter de la chevaucher */
+        }
+
+        /* Style des boutons */
+        .btn {
+            margin: 10px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+        }
+        .btn-outline-primary, .btn-outline-warning, .btn-outline-success {
+            border-width: 3px;  /* Accentue la bordure à 3 pixels */
+            border-radius: 8px; /* (Optionnel) Ajoute des coins légèrement arrondis pour un effet plus doux */
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Header fixé en haut -->
+<div class="banner">
+    Bienvenue sur XXX App
+    <!--
+        <div th:if="${errorMessage}" class="alert alert-danger">
+            <span th:text="${errorMessage}"></span>
+        </div>
+        <div th:if="${message}" class="alert alert-success">
+            <span th:text="${message}"></span>
+        </div>
+    -->
+    </div>
+    <!-- Contenu centré sous le header -->
+<div class="content">
+    <button type="button" class="btn btn-outline-primary" onclick="location.href='/authentification/login'">Admin</button>
+</div>
+
+<script src="/assets/js/core/bootstrap.min.js"></script>
+</body>
+</html>

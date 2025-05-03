@@ -1,0 +1,211 @@
+<!-- HEAD-->
+<head th:fragment="head">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Coworking</title>
+    <meta
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+            name="viewport"
+    />
+    <!-- Fonts and icons -->
+    <script src="/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["/assets/css/fonts.min.css"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="/assets/css/kaiadmin.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.4.1/dist/css/tom-select.default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/tomselect.css" />
+    <script src="/assets/js/tom-select.complete.js"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+    </style>
+</head>
+
+
+
+<!-- SIDEBAR-->
+
+<!-- Sidebar -->
+<div class="sidebar" data-background-color="dark" th:fragment="sidebar">
+    <div class="sidebar-logo">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="dark">
+            <a href="/admin/dashboard" class="logo">
+                    <span style="color: white; font-weight: bold; margin-left: 8px; font-size: larger;" >
+                    </span>
+            </a>
+            <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                    <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                    <i class="gg-menu-left"></i>
+                </button>
+            </div>
+            <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+            </button>
+        </div>
+        <!-- End Logo Header -->
+    </div>
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+                <li class="nav-item active">
+                    <a href="/admin/dashboard">
+                        <i class="far fa-chart-bar"></i>
+                        <p>Tableau de bord</p>
+                        <span class="caret"></span>
+                    </a>
+                </li>
+                <li class="nav-section">
+            <span class="sidebar-mini-icon">
+              <i class="fa fa-ellipsis-h"></i>
+            </span>
+                    <h4 class="text-section">Module</h4>
+                </li>
+
+                <!--siderBar Entity debut-->
+                <li class="nav-item" accept-charset="UTF-8">
+                    <a data-bs-toggle="collapse" href="#entitySider">
+                        <i class="fas fa-thermometer-half"></i>
+                        <p>Entity</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="entitySider">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a class="nav-link" href="/suppliers">
+                                    <span class="sub-item">Suppliers</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--siderBar Entity fin-->
+
+                <!--siderBar paiement debut-->
+                <li class="nav-item" accept-charset="UTF-8">
+                    <a data-bs-toggle="collapse" href="#validationSider">
+                        <i class="fas fa-thermometer-half"></i>
+                        <p>Validation Paiement</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="validationSider">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="">
+                                    <span class="sub-item">validation</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- Sidebar Déconnexion Début -->
+                <li class="nav-item d-flex justify-content-center align-items-center" >
+                    <form action="/logout" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="fas fa-sign-out-alt"></i> Déconnexion
+                        </button>
+                    </form>
+                </li>
+                <!-- Sidebar Déconnexion Fin -->
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Sidebar -->
+
+<!-- NAVBAR-->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg  bg-dark bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="/assets/img/kaiadmin/favicon.png" width="64px" ></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form action="/logout" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-outline-danger">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<!-- FOOTER-->
+<footer class="footer" th:fragment="footer">
+    <div class="container-fluid d-flex justify-content-between">
+        <nav class="pull-left">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://www.themekita.com">
+                        ThemeKita
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Help </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Licenses </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            2024, by Angelo
+        </div>
+        <div>
+            Distributed by
+            <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+        </div>
+    </div>
+</footer>

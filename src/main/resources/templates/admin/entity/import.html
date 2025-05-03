@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template :: head"></head>
+<body>
+<div class="wrapper">
+    <div th:replace="fragments/template :: sidebar"></div>
+
+    <div class="main-panel">
+        <div class="page-inner">
+            <div class="row">
+                <div class="offset-md-2 col-md-8">
+                    <!--debut formulaire-->
+                    <form method="post" action="/admin/entity/import" accept-charset="UTF-8" enctype="multipart/form-data">
+                        <div class="card">
+                            <div class="card-header" style="background-color: #1b1d38;">
+                                <div class="card-title">
+                                    <h2 class="text-center" style="color: white;">Importation des Entity name</h2>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="offset-md-3 col-md-6 offset-lg-2 col-lg-8">
+                                        <div class="row">
+                                            <div class="col-6 offset-3">
+                                                <div class="form-group">
+                                                    <label for="file">Fichier CSV</label>
+                                                    <input type="file" class="form-control" id="file" name="file" accept=".csv" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Gestion des messages -->
+                                <div th:if="${message}" class="alert alert-danger">
+                                    <span th:text="${message}"></span>
+                                </div>
+                                <div th:if="${success}" class="alert alert-success">
+                                    <span th:text="${success}"></span>
+                                </div>
+                            </div>
+
+                            <div class="card-action" style="background-color: #1b1d38;">
+                                <button class="btn btn-success" type="submit">Importer</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!--fin formulaire-->
+
+                </div>
+            </div>
+
+
+
+
+            <div th:replace="fragments/template :: footer"></div>
+            <!--   Core JS Files   -->
+            <script src="/assets/js/core/jquery-3.7.1.min.js"></script>
+            <script src="/assets/js/core/popper.min.js"></script>
+            <script src="/assets/js/core/bootstrap.min.js"></script>
+            <!-- jQuery Scrollbar -->
+            <script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+            <!-- Bootstrap Notify -->
+            <script src="/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+            <!-- Sweet Alert -->
+            <script src="/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+            <!-- Kaiadmin JS -->
+            <script src="/assets/js/kaiadmin.min.js"></script>
+        </div>
+    </div>
+</body>
+</html>

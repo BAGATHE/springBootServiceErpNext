@@ -1,0 +1,65 @@
+.tom-select {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    background-color: #f9f9f9;
+  }
+  
+  /* Style pour le champ de recherche du select */
+  .tom-select .tomeselect-search {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+  }
+  
+  /* Style pour les options dans le menu déroulant */
+  .tom-select .option {
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Changer la couleur de fond au survol des options */
+  .tom-select .option:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Style pour les tags sélectionnés */
+  .tom-select .item {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  
+  /* Style pour la croix de suppression du tag */
+  .tom-select .remove {
+    color: red;
+    cursor: pointer;
+    margin-left: 8px;
+    font-weight: bold;
+  }
+  
+  /* Ajouter un fond personnalisé à l'élément actif (le champ sélectionné) */
+  .tom-select .active .item {
+    background-color: #28a745;
+  }
+  
+  /* Style pour le conteneur lorsque rien n'est sélectionné */
+  .tom-select .placeholder {
+    color: #aaa;
+  }
+  
+  /* Style de bordure lors de l'activation du champ */
+  .tom-select.focus {
+    border: 1px solid #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
