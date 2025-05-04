@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template :: head"></head>
+<body>
+<div class="wrapper">
+    <div th:replace="fragments/template :: sidebar"></div>
+
+    <div class="main-panel">
+        <div class="page-inner">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Détails de Supplier Quotation</strong>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                    <th>Unité</th>
+                                    <th>Prix unitaire</th>
+                                    <th>Quantité</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item : ${listSupplierQuotationItem}">
+                                    <td th:text="${item.name}"></td>
+                                    <td th:text="${item.item_code}"></td>
+                                    <td th:text="${item.description}"></td>
+                                    <td th:text="${item.uom}"></td>
+                                    <td th:text="${item.rate}"></td>
+                                    <td th:text="${item.qty}"></td>
+                                    <td th:text="${item.amount}"></td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(listSupplierQuotationItem)}">
+                                    <td colspan="6" class="text-center">Aucun Supplier Quotation Item trouvé.</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Informations sur le Supplier Quotation</strong>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td th:text="${supplierQuotation.name}">Nom</td>
+                                </tr>
+                                <tr>
+                                    <th>Titre</th>
+                                    <td th:text="${supplierQuotation.title}">Titre</td>
+                                </tr>
+                                <tr>
+                                    <th>Date de transaction</th>
+                                    <td th:text="${supplierQuotation.transaction_date}">Date</td>
+                                </tr>
+                                <tr>
+                                    <th>Devise</th>
+                                    <td th:text="${supplierQuotation.currency}">Devise</td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <td th:text="${supplierQuotation.total}">Total</td>
+                                </tr>
+                                <tr>
+                                    <th>Total général</th>
+                                    <td th:text="${supplierQuotation.grand_total}">Grand Total</td>
+                                </tr>
+                                <tr>
+                                    <th>Statut</th>
+                                    <td th:text="${supplierQuotation.status}">Statut</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Chart JS -->
+            <div th:replace="fragments/template :: footer"></div>
+            <!--   Core JS Files   -->
+            <script src="/assets/js/core/jquery-3.7.1.min.js"></script>
+            <script src="/assets/js/core/popper.min.js"></script>
+            <script src="/assets/js/core/bootstrap.min.js"></script>
+            <!-- jQuery Scrollbar -->
+            <script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+            <!-- Bootstrap Notify -->
+            <script src="/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+            <!-- Sweet Alert -->
+            <script src="/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+            <!-- Kaiadmin JS -->
+            <script src="/assets/js/kaiadmin.min.js"></script>
+        </div>
+    </div>
+</body>
+</html>
