@@ -26,8 +26,11 @@
                                 <a th:href="@{'supplier/' + ${supplier.name} + '/supplierQuotations'}" class="btn btn-sm btn-primary">
                                     Supplier Quotation
                                 </a>
-                                <a href="" class="btn btn-sm btn-danger">
+                                <a th:href="@{'/supplier/' + ${supplier.name} + '/purchaseOrders'}" class="btn btn-sm btn-danger">
                                     Purchase Order
+                                </a>
+                                <a th:href="@{'/supplier/' + ${supplier.name} + '/purchaseOrdersStatus'}" class="btn btn-sm btn-danger">
+                                    PO status
                                 </a>
                             </td>
                         </tr>
