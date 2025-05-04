@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template :: head"></head>
+<body>
+<div class="wrapper">
+    <div th:replace="fragments/template :: sidebar"></div>
+
+    <div class="main-panel">
+        <div class="page-inner">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a th:href="@{'/accounting/purchaseInvoices'}">Purchase Invoice</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-2 col-md-8">
+                    <div class="card">
+                        <div class="card-header" style="background-color: #1b1d38;">
+                            <div class="card-title">
+                                <h2 class="text-center" style="color: white;">Payment</h2>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form method="post" th:action="@{'/accounting/purchaseInvoices/' + ${purchaseInvoiceName} + '/payment'}">
+
+                                            <!-- Date de paiement -->
+                                            <div class="form-group">
+                                                <label for="posting_date">Date de paiement</label>
+                                                <input type="date" class="form-control" id="posting_date" name="posting_date" required>
+                                            </div>
+
+                                            <!-- Montant à payer -->
+                                            <div class="form-group">
+                                                <label for="paid_amount">Montant à payer</label>
+                                                <input type="number" class="form-control" id="paid_amount" name="paid_amount" placeholder="Entrez le montant" step="0.01" required>
+                                            </div>
+
+                                            <!-- Mode de paiement-->
+                                            <div class="form-group">
+                                                <label for="mode_of_payment">Mode de paiement</label>
+                                                <select class="form-control" id="mode_of_payment" name="mode_of_payment" required>
+                                                    <option value="Cash">Cash</option>
+                                                </select>
+                                            </div>
+
+                                            <!-- Champ caché avec le nom de la facture -->
+                                            <input type="hidden" name="purchaseInvoiceName" th:value="${purchaseInvoiceName}" />
+
+                                            <button type="submit" class="btn btn-primary">Valider le Paiement</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!--   Core JS Files   -->
+                <script src="/assets/js/core/jquery-3.7.1.min.js"></script>
+                <script src="/assets/js/core/popper.min.js"></script>
+                <script src="/assets/js/core/bootstrap.min.js"></script>
+                <!-- jQuery Scrollbar -->
+                <script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+                <!-- Bootstrap Notify -->
+                <script src="/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+                <!-- Sweet Alert -->
+                <script src="/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+                <!-- Kaiadmin JS -->
+                <script src="/assets/js/kaiadmin.min.js"></script>
+            </div>
+        </div>
+</body>
+</html>
