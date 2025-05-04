@@ -12,21 +12,23 @@
                     <table class="table table-bordered table-head-bg-success mt-3">
                         <thead>
                         <tr>
-                            <th class="text-center" scope="col">col 1</th>
-                            <th class="text-center" scope="col">col 2</th>
-                            <th class="text-center" scope="col">col 3 </th>
+                            <th class="text-center" scope="col">Name</th>
+                            <th class="text-center" scope="col">Group</th>
                             <th class="text-center" scope="col">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="supplier : ${suppliers}">
                             <td th:text="${supplier.name}" class="text-center"></td>
-                            <td th:text="${supplier.supplier_name}" class="text-center"></td>
                             <td th:text="${supplier.supplier_group}" class="text-center"></td>
                             <td class="text-center">
                                 <!-- Boutons actions -->
-                                <a href="#" class="btn btn-sm btn-primary">Modifier</a>
-                                <a href="#" class="btn btn-sm btn-danger">Supprimer</a>
+                                <a th:href="@{'supplier/' + ${supplier.name} + '/supplierQuotations'}" class="btn btn-sm btn-primary">
+                                    Supplier Quotation
+                                </a>
+                                <a href="" class="btn btn-sm btn-danger">
+                                    Purchase Order
+                                </a>
                             </td>
                         </tr>
                         </tbody>
