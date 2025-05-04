@@ -1,10 +1,8 @@
 package com.itu.evaluation.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itu.evaluation.constante.Constante;
-import com.itu.evaluation.model.Supplier;
-import com.itu.evaluation.model.SupplierQuotation;
-import com.itu.evaluation.model.SupplierQuotationItem;
-import com.itu.evaluation.model.Utilisateur;
+import com.itu.evaluation.model.*;
 import com.itu.evaluation.utils.FrappeResponse;
 import com.itu.evaluation.utils.ResponseUtil;
 import jakarta.servlet.http.HttpSession;
@@ -163,5 +161,108 @@ public class SupplierService {
         return responseUtil;
     }
 
+
+    public ResponseUtil getAllPurchaseOrder(String supplierName) {
+        ResponseUtil responseUtil = new ResponseUtil();
+
+        try {
+            String[][] criteria = {{"supplier", "=", supplierName}};
+            List<PurchaseOrder> purchaseOrders = this.apiService.fetchCriteria("Purchase Order", PurchaseOrder.class, criteria);
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("listPurchaseOrder", purchaseOrders);
+            data.put("supplierName", supplierName);
+
+            responseUtil.setStatus("success");
+            responseUtil.setData(data);
+            responseUtil.setError(null);
+            responseUtil.setDetailError(null);
+        } catch (Exception e) {
+            responseUtil.setStatus("error");
+            responseUtil.setData(null);
+            responseUtil.setError("Erreur lors de la recuperation des Purchase Order pour Supplier: "+supplierName+"!");
+            responseUtil.setDetailError(e.getMessage());
+        }
+
+        return responseUtil;
+    }
+
+
+    public ResponseUtil getItemPurchaseOrder(String supplierName,String purchaseOrderName) {
+        ResponseUtil responseUtil = new ResponseUtil();
+
+        try {
+            PurchaseOrder purchaseOrder = this.apiService.fetchByName("Purchase Order", PurchaseOrder.class, purchaseOrderName);
+            List<PurchaseOrderItem> purchaseOrderItems = purchaseOrder.getItems();
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("listPurchaseOrderItem", purchaseOrderItems);
+            data.put("supplierName", supplierName);
+            data.put("purchaseOrder", purchaseOrder);
+
+            responseUtil.setStatus("success");
+            responseUtil.setData(data);
+            responseUtil.setError(null);
+            responseUtil.setDetailError(null);
+        } catch (Exception e) {
+            responseUtil.setStatus("error");
+            responseUtil.setData(null);
+            responseUtil.setError("Erreur lors de la recuperation des Item pour Purchase Order: "+purchaseOrderName+"(Supplier = "+supplierName+")!");
+            responseUtil.setDetailError(e.getMessage());
+        }
+
+        return responseUtil;
+    }
+
+    public List<PurchaseOrder> getPurchaseOrderWithStatus(String baseUrl) {
+        List<PurchaseOrder> listOrders = new ArrayList<>();
+
+        try {
+            Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+            String token = utilisateur.getToken();
+
+            // Ajouter le token dans l'entête
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Cookie", "sid=" + token);
+
+            HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+
+            System.out.println("URL : " + baseUrl);
+
+            // Appel de l'API
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    baseUrl,
+                    HttpMethod.GET,
+                    requestEntity,
+                    Map.class
+            );
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                Map<String, Object> body = response.getBody();
+
+                if (body != null && body.containsKey("message")) {
+                    Map<String, Object> message = (Map<String, Object>) body.get("message");
+
+                    // Change ici selon la vraie clé de ta réponse JSON pour les commandes d'achat
+                    if (message.containsKey("listPurchaseOrder")) {
+                        List<Map<String, Object>> data = (List<Map<String, Object>>) message.get("listPurchaseOrder");
+
+                        ObjectMapper mapper = new ObjectMapper();
+
+                        for (Map<String, Object> item : data) {
+                            PurchaseOrder order = mapper.convertValue(item, PurchaseOrder.class);
+                            listOrders.add(order);
+                        }
+
+                        System.out.println("Total Purchase Orders : " + listOrders.size());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listOrders;
+    }
 
 }
