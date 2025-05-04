@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template :: head"></head>
+<body>
+<div class="wrapper">
+  <div th:replace="fragments/template :: sidebar"></div>
+
+  <div class="main-panel">
+    <div class="page-inner">
+      <div class="row">
+        <div class="offset-2 col-8">
+          <table class="table table-bordered table-head-bg-success mt-3">
+            <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Fournisseur</th>
+              <th>Date de Publication</th>
+              <th>Date d’Échéance</th>
+              <th>Devise</th>
+              <th>Montant Total</th>
+              <!--                  <th>Montant Payé</th>-->
+              <th>Statut</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="invoice : ${listPurchaseInvoice}">
+              <td>
+                <a th:href="@{'/accounting/purchaseInvoices/' + ${invoice.name} + '/items'}"
+                   th:text="${invoice.name}">
+                </a>
+              </td>
+              <td th:text="${invoice.supplier_name}"></td>
+              <td th:text="${invoice.posting_date}"></td>
+              <td th:text="${invoice.due_date}"></td>
+              <td th:text="${invoice.price_list_currency}"></td>
+              <td th:text="${invoice.grand_total}"></td>
+              <!--                  <td th:text="${invoice.paid_amount}"></td>-->
+              <td th:text="${invoice.status}"></td>
+              <td>
+                <button class="btn btn-success">
+                  <a th:href="@{'/accounting/purchaseInvoices/' + ${invoice.name} + '/payment'}">
+                    Ajouter Payment
+                  </a>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <!-- Chart JS -->
+      <div th:replace="fragments/template :: footer"></div>
+      <!--   Core JS Files   -->
+      <script src="/assets/js/core/jquery-3.7.1.min.js"></script>
+      <script src="/assets/js/core/popper.min.js"></script>
+      <script src="/assets/js/core/bootstrap.min.js"></script>
+      <!-- jQuery Scrollbar -->
+      <script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+      <!-- Bootstrap Notify -->
+      <script src="/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+      <!-- Sweet Alert -->
+      <script src="/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+      <!-- Kaiadmin JS -->
+      <script src="/assets/js/kaiadmin.min.js"></script>
+    </div>
+  </div>
+</body>
+</html>

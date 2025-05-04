@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/template :: head"></head>
+<body>
+<div class="wrapper">
+    <div th:replace="fragments/template :: sidebar"></div>
+
+    <div class="main-panel">
+        <div class="page-inner">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a th:href="@{'/accounting/purchaseInvoices'}">Purchase Invoice</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <!-- Informations générales sur la facture -->
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Détails de la facture : </strong> <span th:text="${purchaseInvoiceName}"></span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Fournisseur : </strong><span th:text="${purchaseInvoice.supplier_name}"></span></p>
+                        <p><strong>Date : </strong><span th:text="${purchaseInvoice.posting_date}"></span></p>
+                        <p><strong>Devise : </strong><span th:text="${purchaseInvoice.price_list_currency}"></span></p>
+                        <p><strong>Total : </strong><span th:text="${purchaseInvoice.grand_total}"></span></p>
+                        <!--          <p><strong>Payé : </strong><span th:text="${purchaseInvoice.paid_amount}"></span></p>-->
+                        <p><strong>Statut : </strong><span th:text="${purchaseInvoice.status}"></span></p>
+                    </div>
+                </div>
+
+                <div class="offset-2 col-8">
+                    <table class="table table-bordered table-head-bg-success mt-3">
+                        <thead>
+                        <tr>
+                            <th>Code Article</th>
+                            <th>Nom</th>
+                            <th>Quantité</th>
+                            <th>Prix Unitaire</th>
+                            <th>Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item : ${listPurchaseInvoiceItem}">
+                            <td th:text="${item.item_code}"></td>
+                            <td th:text="${item.item_name}"></td>
+                            <td th:text="${item.qty}"></td>
+                            <td th:text="${item.rate}"></td>
+                            <td th:text="${item.amount}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <table class="table table-bordered table-head-bg-success mt-3">
+                        <thead>
+                        <tr>
+                            <th>Nom du document</th>
+                            <th>Type de document</th>
+                            <th>Date d'échéance</th>
+                            <th>Montant total</th>
+                            <th>Montant impayé</th>
+                            <th>Montant alloué</th>
+                            <th>Compte</th>
+                            <th>Nom du payment</th>
+                            <th>Type de payment</th>
+                            <th>Devise (de)</th>
+                            <th>Devise (vers)</th>
+                            <th>Montant payé</th>
+                            <th>Mode</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="ref : ${listPaymentEntryReference}">
+                            <td th:text="${ref.reference_name}"></td>
+                            <td th:text="${ref.reference_doctype}"></td>
+                            <td th:text="${ref.due_date}"></td>
+                            <td th:text="${ref.total_amount}"></td>
+                            <td th:text="${ref.outstanding_amount}"></td>
+                            <td th:text="${ref.allocated_amount}"></td>
+                            <td th:text="${ref.account}"></td>
+                            <td th:text="${ref.payment_entry_name}"></td>
+                            <td th:text="${ref.payment_type}"></td>
+                            <td th:text="${ref.paid_from_account_currency}"></td>
+                            <td th:text="${ref.paid_to_account_currency}"></td>
+                            <td th:text="${ref.paid_amount}"></td>
+                            <td th:text="${ref.mode_of_payment}"></td>
+                            <td th:text="${ref.status}"></td>
+                            <td>
+                                <div th:if="${ref.status == 'Draft'}">
+                                    <a class="btn btn-success"
+                                       th:href="@{'/accounting/purchaseInvoices/' + ${purchaseInvoiceName} + '/payment/' + ${ref.reference_name} + '/submit'}">
+                                        Valider
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- Chart JS -->
+            <div th:replace="fragments/template :: footer"></div>
+            <!--   Core JS Files   -->
+            <script src="/assets/js/core/jquery-3.7.1.min.js"></script>
+            <script src="/assets/js/core/popper.min.js"></script>
+            <script src="/assets/js/core/bootstrap.min.js"></script>
+            <!-- jQuery Scrollbar -->
+            <script src="/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+            <!-- Bootstrap Notify -->
+            <script src="/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+            <!-- Sweet Alert -->
+            <script src="/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+            <!-- Kaiadmin JS -->
+            <script src="/assets/js/kaiadmin.min.js"></script>
+        </div>
+    </div>
+</body>
+</html>
